@@ -4,7 +4,8 @@ import folium
 from streamlit_folium import folium_static
 import geopandas as gpd
 from PIL import Image
-import matplotlib.pyplot as plt
+import matplotlib
+import numpy as np
 
 
 project_path = r'C:\Users\SameerAhamed\Documents\GitHub\MACHINE-LEARNING-DSCI6601-PROJECT\\'
@@ -162,13 +163,271 @@ st.bar_chart(df_missingness)
 
 st.write()
 st.info('Distribution of data instances in years')
-img = Image.open(project_path+r'Distribution of data wrt years.png')
-st.image(img,use_column_width=True)
+img1 = Image.open(project_path+r'Distribution of data wrt years.png')
+st.image(img1,use_column_width=True)
 
 st.write()
 st.info('Distribution of the Emission Target Value')
-img = Image.open(project_path+r'Target Value Histogram.png')
-st.image(img,use_column_width=True)
+img2 = Image.open(project_path+r'Target Value Histogram.png')
+st.image(img2,use_column_width=True)
 
+st.info('Visualizations of Emmisions in each unique locations')
+def rgba_to_hex(color):
+    """Return color as #rrggbb for the given color values."""
+    red, green, blue, alpha = color
+    return f"#{int(red*255):02x}{int(green*255):02x}{int(blue*255):02x}"
+
+temp = train.groupby(['latitude', 'longitude']).emission.mean().reset_index()
+geometry = gpd.points_from_xy(temp.longitude, temp.latitude)
+
+cmap = matplotlib.colormaps['coolwarm']
+normalizer = matplotlib.colors.Normalize(vmin=np.log1p(temp.emission.min()), vmax=np.log1p(temp.emission.max()))
+
+# Create a canvas to plot your map on
+all_data_map = folium.Map(prefer_canvas=True)
+
+# Create a geometry list from the GeoDataFrame
+geo_df_list = [[point.xy[1][0], point.xy[0][0]] for point in geometry]
+
+# Iterate through list and add a marker for each location
+for coordinates, emission in zip(geo_df_list, temp.emission):
+#     print(emission, normalizer(emission), rgba_to_hex(cmap(normalizer(emission))))
+    # Place the markers 
+    all_data_map.add_child(
+        folium.CircleMarker(
+            location=coordinates,
+            radius = 1,
+            weight = 4,
+            zoom =10,
+            color = rgba_to_hex(cmap(normalizer(np.log1p(emission))))),
+        )
+all_data_map.fit_bounds(all_data_map.get_bounds())
+folium_static(all_data_map)
+
+st.write('')
 
 st.markdown('**2. Data Cleaning and Preperation**')
+
+st.markdown('**2.1. Feature selection and Evaluation Approach**')
+
+st.markdown("""
+There are 7 features we need to compare with the outcome.
+
+* Sulphur Dioxide
+
+* Carbon Monoxide
+
+* Nitrogen Dioxide
+
+* Formaldehyde
+
+* UV Aerosol Index
+
+* Ozone
+
+* Cloud
+            
+We need to deal with missingness in the variables (columns) for exploratory data analysis. 
+            Therefore, we dropped all the variables that have more than 40% of missing values.
+""")
+
+# Button to show the text
+if st.button('Click here to see features left after dropping'):
+    # Display the text when the button is clicked
+    st.write("""NitrogenDioxide_tropospheric_NO2_column_number_density
+             
+NitrogenDioxide_stratospheric_NO2_column_number_density
+             
+NitrogenDioxide_NO2_slant_column_number_density
+             
+NitrogenDioxide_tropopause_pressure
+             
+NitrogenDioxide_absorbing_aerosol_index
+             
+NitrogenDioxide_cloud_fraction
+             
+NitrogenDioxide_sensor_altitude
+             
+NitrogenDioxide_sensor_azimuth_angle
+             
+NitrogenDioxide_sensor_zenith_angle
+             
+NitrogenDioxide_solar_azimuth_angle
+             
+NitrogenDioxide_solar_zenith_angle
+             
+Formaldehyde_tropospheric_HCHO_column_number_density
+             
+Formaldehyde_tropospheric_HCHO_column_number_density_amf
+             
+Formaldehyde_HCHO_slant_column_number_density
+             
+Formaldehyde_cloud_fraction
+             
+Formaldehyde_solar_zenith_angle
+             
+Formaldehyde_solar_azimuth_angle
+             
+Formaldehyde_sensor_zenith_angle
+             
+Formaldehyde_sensor_azimuth_angle
+             
+UvAerosolIndex_absorbing_aerosol_index
+             
+UvAerosolIndex_sensor_altitude
+             
+UvAerosolIndex_sensor_azimuth_angle
+             
+UvAerosolIndex_sensor_zenith_angle
+             
+UvAerosolIndex_solar_azimuth_angle
+             
+UvAerosolIndex_solar_zenith_angle
+             
+Ozone_O3_column_number_density
+             
+Ozone_O3_column_number_density_amf
+             
+Ozone_O3_slant_column_number_density
+             
+Ozone_O3_effective_temperature
+             
+Ozone_cloud_fraction
+             
+Ozone_sensor_azimuth_angle
+             
+Ozone_sensor_zenith_angle
+             
+Ozone_solar_azimuth_angle
+             
+Ozone_solar_zenith_angle
+             
+Cloud_cloud_fraction
+             
+Cloud_cloud_top_pressure
+             
+Cloud_cloud_top_height
+             
+Cloud_cloud_base_pressure
+             
+Cloud_cloud_base_height
+             
+Cloud_cloud_optical_depth
+             
+Cloud_surface_albedo
+             
+Cloud_sensor_azimuth_angle
+             
+Cloud_sensor_zenith_angle
+             
+Cloud_solar_azimuth_angle
+             
+Cloud_solar_zenith_angle
+             
+emission""")
+    
+
+st.write('')
+    
+
+st.markdown("""
+<div class="justify-text">
+In the process of developing our machine learning model, 
+            we are meticulously examining a range of 
+            environmental features to better understand 
+            their relationship with our target variable, 
+            which is emission levels. Our dataset encompasses 
+            seven primary features: Sulphur Dioxide, Carbon Monoxide, 
+            Nitrogen Dioxide, Formaldehyde, UV Aerosol Index, Ozone, 
+            and Cloud. Each of these primary features is further broken
+             down into various sub-features, providing a more granular 
+            view and enabling a thorough analysis.
+
+Our objective is to identify a single, representative feature for each 
+            primary feature category that most significantly correlates 
+            with emission levels. To achieve this, we are employing 
+            heatmaps as a key analytical tool. Heatmaps offer a visual 
+            representation of correlation data, making it easier to pinpoint 
+            which specific sub-features have the strongest correlations with 
+            emissions. By focusing on these highly correlated sub-features, we 
+            aim to enhance the predictive accuracy of our machine learning model,
+             ensuring that it is both efficient and effective in predicting emission
+             levels based on environmental factors. This approach allows us 
+            to streamline our feature set, reducing complexity while maintaining,
+             or even improving, the model's performance.
+</div>
+""", unsafe_allow_html=True)
+
+# Get the Images for all the heatmaps
+carbon_img = Image.open(project_path+r'Carbon Monoxide heatmap.png')
+sulphur_img = Image.open(project_path+r'Sulphur dioxide heatmap.png')
+nitrogen_img = Image.open(project_path+r'Nitrogen Dioxide heatmap.png')
+formaldehyde_img = Image.open(project_path+r'Formaldehyde Heatmap.png')
+uv_img = Image.open(project_path+r'UV Aerosol Heatmap.png')
+ozone_img = Image.open(project_path+r'Ozone Heatmap.png')
+cloud_img = Image.open(project_path+r'Cloud Heatmap.png')
+
+
+st.image(sulphur_img,caption='Correlation of Sulphur Dioxide Features to emission')
+st.info('Selected Feature: **SulphurDioxide_sensor_azimuth_angle**')
+
+
+st.image(carbon_img,caption='Correlation of Carbon Monoxide Features to emission')
+st.info('Selected Feature: **CarbonMonoxide_H2O_column_number_density**')
+
+st.image(nitrogen_img,caption='Correlation of Nitrogen Features to emission')
+st.info('Selected Feature: **NitrogenDioxide_sensor_altitude**')
+
+st.image(formaldehyde_img,caption='Correlation of Formaldehyde Features to emission')
+st.info('Selected Feature: **Formaldehyde_tropospheric_HCHO_column_number_density_amf**')
+
+st.image(uv_img,caption='Correlation of UV Aerosol Features to emission')
+st.info('Selected Feature: **UvAerosolIndex_solar_azimuth_angle**')
+
+st.image(ozone_img,caption='Correlation of Ozone Features to emission')
+st.info('Selected Feature: **Ozone_solar_azimuth_angle**')
+
+st.image(cloud_img,caption='Correlation of Cloud Features to emission')
+st.info('Selected Feature: **Cloud_solar_azimuth_angle**')
+
+st.write()
+
+st.markdown('**2.2. Using domain knowledge about emissions and environments**')
+img3 = Image.open(project_path+r'time series foe every location.png')
+
+st.image(img3,use_column_width=True,caption='Time Series graph of the Emission over 2019 to 2021 in numbered weeks')
+
+folium_static(all_data_map)
+
+
+st.markdown("""
+<div class="justify-text">
+In the process of refining our dataset for analysis, 
+            we selectively chose to retain only the 
+            columns pertaining to latitude, longitude, 
+            and week number and year. This decision was significantly 
+            influenced by insights gained from a domain expert 
+            in environmental science, who is currently pursuing 
+            a master's degree. According to their expertise, 
+            emissions are intricately linked to time-series 
+            variations. This knowledge prompted us to focus 
+            on the spatial and temporal dimensions of our 
+            data. By incorporating latitude and longitude, 
+            we ensure that our analysis accounts for the 
+            geographic distribution of emissions, recognizing 
+            that environmental impacts can vary greatly across 
+            different locations. The inclusion of the week number 
+            is equally critical, as it allows us to investigate how 
+            emissions fluctuate over time, from week 0 to week 52. 
+            This time component is essential to understand seasonal 
+            patterns, trends, and anomalies in emission levels. By 
+            narrowing down to these specific columns, our analysis 
+            is tailored to explore the relationship between emissions 
+            and their temporal and spatial dynamics, thereby aligning 
+            with the specialized insights provided by the 
+            environmental science expert.
+""", unsafe_allow_html=True)
+
+st.write('')
+
+
