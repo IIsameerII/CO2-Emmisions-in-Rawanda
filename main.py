@@ -28,7 +28,7 @@ st.title('Prediction of CO2 Emissions in Rwanda')
 
 # Setting the contributor name
 st.subheader('Contributors \n * Sameer Ahamed \n * Peter Utomakili \n * Adejoke Adeoye')
-st.write('')
+st.write('--------------------------')
 
 # Project Overview
 st.subheader('Project Overview')
@@ -37,7 +37,7 @@ st.markdown("""
     Our primary focus is on greenhouse gas emissions, particularly carbon dioxide (CO2). These emissions result from a variety of human activities, including the use of fossil fuels for energy, transportation, manufacturing, and deforestation. Rising global temperatures, more frequent and severe extreme weather events, the melting of the polar ice caps, an increase in sea level, and disruptions to ecosystems and biodiversity are some of the negative repercussions that follow. To ensure a healthy and habitable planet for both the present and future generations, addressing the emissions problem is a global necessity that requires cooperative efforts to reduce and ultimately eradicate these harmful emissions.
 </div>
 """, unsafe_allow_html=True)
-st.write('')
+st.write('-------------------------')
 
 
 # Project Novelty 
@@ -60,7 +60,7 @@ st.markdown("""
     these harmful emissions.
 </div>
 """, unsafe_allow_html=True)
-st.write('')
+st.write('-------------------------')
 
 # Methodology
 st.subheader('Methodology')
@@ -204,7 +204,7 @@ for coordinates, emission in zip(geo_df_list, temp.emission):
 all_data_map.fit_bounds(all_data_map.get_bounds())
 folium_static(all_data_map)
 
-st.write('')
+st.write('----------------------')
 
 st.markdown('**2. Data Cleaning and Preperation**')
 
@@ -390,7 +390,53 @@ st.info('Selected Feature: **Ozone_solar_azimuth_angle**')
 st.image(cloud_img,caption='Correlation of Cloud Features to emission')
 st.info('Selected Feature: **Cloud_solar_azimuth_angle**')
 
-st.write()
+
+st.markdown("""
+<div class="justify-text">
+These are the features we are left with -
+
+* latitude
+
+* longitude
+
+* year
+
+* week_no
+
+* SulphurDioxide_sensor_azimuth_angle
+
+* CarbonMonoxide_H2O_column_number_density
+
+* NitrogenDioxide_sensor_altitude
+            
+* Formaldehyde_tropospheric_HCHO_column_number_density_amf
+            
+* UvAerosolIndex_solar_azimuth_angle
+            
+* Ozone_solar_azimuth_angle
+            
+* Cloud_solar_azimuth_angle
+            
+* emission
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<div class="justify-text">
+There are 2 ways which we tried to deal with the missingness of the features.
+            
+1. using KNN imputer
+            
+2. checking the distribution and seeing the median and mode
+            
+
+We trained the resulting dataset with this
+</div>
+""", unsafe_allow_html=True)
+
+
+
+st.write('---------')
 
 st.markdown('**2.2. Using domain knowledge about emissions and environments**')
 img3 = Image.open(project_path+r'time series foe every location.png')
