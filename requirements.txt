@@ -6,4 +6,3 @@ numpy==1.25.2
 matplotlib==3.7.3
 Pillow==10.1.0
 geopandas==0.14.0
-pickle
