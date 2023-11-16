@@ -8,6 +8,7 @@ import numpy as np
 st.set_page_config(page_title='Predict using models')
 st.header('Predict using our Trained Models')
 
+
 # Define custom CSS for justification
 st.markdown("""
 <style>
@@ -82,13 +83,13 @@ for num in range(0,num_times):
         # st.write(output)
         pred_list.append(['Kernel Ridge Regressor',output])
 
-    with open(config.project_path + r'models\RandomForestRegressor1.pkl', 'rb') as file:
-        loaded_model = pickle.load(file)
+    # with open(config.project_path + r'models\RandomForestRegressor1.pkl', 'rb') as file:
+    #     loaded_model = pickle.load(file)
 
-        output = loaded_model.predict(selected_data)
+    #     output = loaded_model.predict(selected_data)
 
-        # st.write(output)
-        pred_list.append(['Random Forest Regressor',output])
+    #     # st.write(output)
+    #     pred_list.append(['Random Forest Regressor',output])
 
 
 

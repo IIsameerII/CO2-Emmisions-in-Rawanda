@@ -486,6 +486,17 @@ st.write('----------------------')
 
 st.markdown('**3. Model Scores**')
 
+# Create a DataFrame
+df = pd.DataFrame({
+    'Model': [ 'Linear Regression', 'Lasso', 
+              'Gradient Boosting Regressor', 'Decision Tree', 
+              'Kernel Ridge Regressor', 'Random Forest Regressor'],
+    'Test Scores': [0.0124, 0.0121, 0.7975, 
+                   0.9676, 0.1298, 0.9760]
+})
 
+# Set 'Model' as the index of the DataFrame
+df = df.set_index('Model')
 
-
+# Create a bar chart
+st.bar_chart(df)
