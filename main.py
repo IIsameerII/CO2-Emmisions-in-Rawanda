@@ -464,7 +464,7 @@ st.markdown("""
 In the process of refining our dataset for analysis, 
             we selectively chose to retain only the 
             columns pertaining to latitude, longitude, 
-            and week number and year. This decision was significantly 
+            and week number. This decision was significantly 
             influenced by insights gained from a domain expert 
             in environmental science, who is currently pursuing 
             a master's degree. According to their expertise, 
