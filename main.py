@@ -11,7 +11,7 @@ import config
 
 # project_path = r'C:\Users\SameerAhamed\Documents\GitHub\MACHINE-LEARNING-DSCI6601-PROJECT\\'
 
-train = pd.read_csv(config.project_path + r'dataset\CO2 Emmisions in Rawanda\train.csv',
+train = pd.read_csv(r'./dataset/CO2 Emmisions in Rawanda/train.csv',
                     index_col='ID_LAT_LON_YEAR_WEEK')
 # train = pd.read_csv(r'./dataset/CO2 Emmisions in Rawanda/train.csv',
 #                     index_col='ID_LAT_LON_YEAR_WEEK')
@@ -161,17 +161,17 @@ Since our project involves geospatial data, leveraging the measurements
 
 st.write('')
 st.info('Visiualization of missingness in the dataset')
-df_missingness = pd.read_csv(config.project_path + r'df_missingness.csv',index_col='Key')
+df_missingness = pd.read_csv(r'df_missingness.csv',index_col='Key')
 st.bar_chart(df_missingness)
 
 st.write()
 st.info('Distribution of data instances in years')
-img1 = Image.open(config.project_path+r'Distribution of data wrt years.png')
+img1 = Image.open('Distribution of data wrt years.png')
 st.image(img1,use_column_width=True)
 
 st.write()
 st.info('Distribution of the Emission Target Value')
-img2 = Image.open(config.project_path+r'Target Value Histogram.png')
+img2 = Image.open('Target Value Histogram.png')
 st.image(img2,use_column_width=True)
 
 st.info('Visualizations of Emmisions in each unique locations')
@@ -368,13 +368,13 @@ Our objective is to identify a single, representative feature for each
 """, unsafe_allow_html=True)
 
 # Get the Images for all the heatmaps
-carbon_img = Image.open(config.project_path+r'Carbon Monoxide heatmap.png')
-sulphur_img = Image.open(config.project_path+r'Sulphur dioxide heatmap.png')
-nitrogen_img = Image.open(config.project_path+r'Nitrogen Dioxide heatmap.png')
-formaldehyde_img = Image.open(config.project_path+r'Formaldehyde Heatmap.png')
-uv_img = Image.open(config.project_path+r'UV Aerosol Heatmap.png')
-ozone_img = Image.open(config.project_path+r'Ozone Heatmap.png')
-cloud_img = Image.open(config.project_path+r'Cloud Heatmap.png')
+carbon_img = Image.open(r'Carbon Monoxide heatmap.png')
+sulphur_img = Image.open(r'Sulphur dioxide heatmap.png')
+nitrogen_img = Image.open(r'Nitrogen Dioxide heatmap.png')
+formaldehyde_img = Image.open(r'Formaldehyde Heatmap.png')
+uv_img = Image.open(r'UV Aerosol Heatmap.png')
+ozone_img = Image.open(r'Ozone Heatmap.png')
+cloud_img = Image.open(r'Cloud Heatmap.png')
 
 
 st.image(sulphur_img,caption='Correlation of Sulphur Dioxide Features to emission')
@@ -449,7 +449,7 @@ There are 2 ways which we tried to deal with the missing values of the features.
 st.write('---------')
 
 st.markdown('**2.2. Using domain knowledge about emissions and environments**')
-img3 = Image.open(config.project_path+r'time series foe every location.png')
+img3 = Image.open(r'time series foe every location.png')
 
 st.image(img3,use_column_width=True,caption='Time Series graph of the Emission over 2019 to 2021 in numbered weeks')
 
