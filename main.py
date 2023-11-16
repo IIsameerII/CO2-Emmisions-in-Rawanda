@@ -28,7 +28,7 @@ st.markdown("""
 st.title('Prediction of CO2 Emissions in Rwanda')
 
 # Setting the contributor name
-st.subheader('Contributors \n * Sameer Ahamed \n * Peter Utomakili \n * Adejoke Adeoye')
+st.subheader('Contributors \n * [Sameer Ahamed](https://www.linkedin.com/in/sameer-ahamed-904032165/) \n * [Peter Utomakili](http://www.linkedin.com/in/peter-utomakili-a12a6b34) \n * [Adejoke Adeoye](https://www.linkedin.com/in/adejokeadeoye/)')
 st.write('--------------------------')
 
 # Project Overview
@@ -432,12 +432,13 @@ st.markdown("""
 <div class="justify-text">
 There are 2 ways which we tried to deal with the missing values of the features.
             
-1. using KNN imputer
+1. Using KNN imputer
             
-2. checking the distribution and seeing the mean and median
+2. Checking the distribution to determine the appropriate measure of central tendency
+            : mean and median
             
 
-We trained the resulting dataset with this
+
 </div>
 """, unsafe_allow_html=True)
 
@@ -481,6 +482,10 @@ In the process of refining our dataset for analysis,
             environmental science expert.
 """, unsafe_allow_html=True)
 
-st.write('')
+st.write('----------------------')
+
+st.markdown('**3. Model Scores**')
+
+
 
 
