@@ -41,7 +41,7 @@ for num in range(0,num_times):
 
     
 
-    with open(config.project_path + r'models\LinearRegressor1.pkl', 'rb') as file:
+    with open(config.project_path + r'./models/LinearRegressor1.pkl', 'rb') as file:
         loaded_model = pickle.load(file)
 
         output = loaded_model.predict(selected_data)
@@ -49,7 +49,7 @@ for num in range(0,num_times):
         # st.write(output)
         pred_list.append(['Linear Regression',output])
 
-    with open(config.project_path + r'models\Lasso1.pkl', 'rb') as file:
+    with open(config.project_path + r'./models/Lasso1.pkl', 'rb') as file:
         loaded_model = pickle.load(file)
 
         output = loaded_model.predict(selected_data)
@@ -57,7 +57,7 @@ for num in range(0,num_times):
         # st.write(output)
         pred_list.append(['Lasso',output])
 
-    with open(config.project_path + r'models\GradientBoostingRegressor1.pkl', 'rb') as file:
+    with open(config.project_path + r'./models/GradientBoostingRegressor1.pkl', 'rb') as file:
         loaded_model = pickle.load(file)
 
 
@@ -66,7 +66,7 @@ for num in range(0,num_times):
         # st.write(output)
         pred_list.append(['Gradient Boosting Regressor',output])
 
-    with open(config.project_path + r'models\DesicionTree1.pkl', 'rb') as file:
+    with open(config.project_path + r'./models/DesicionTree1.pkl', 'rb') as file:
         loaded_model = pickle.load(file)
 
         output = loaded_model.predict(selected_data)
@@ -74,7 +74,7 @@ for num in range(0,num_times):
         # st.write(output)
         pred_list.append(['Desicion Tree',output])
 
-    with open(config.project_path + r'models\KernelRidge1.pkl', 'rb') as file:
+    with open(config.project_path + r'./models/KernelRidge1.pkl', 'rb') as file:
         loaded_model = pickle.load(file)
 
         output = loaded_model.predict(selected_data)
