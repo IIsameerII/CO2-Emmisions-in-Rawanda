@@ -165,7 +165,7 @@ Since our project involves geospatial data, leveraging the measurements
 """, unsafe_allow_html=True)
 
 st.write('')
-st.info('Visiualization of missingness in the dataset')
+st.info('Visualization of missing values in the dataset')
 df_missingness = pd.read_csv(r'df_missingness.csv',index_col='Key')
 st.bar_chart(df_missingness)
 
