@@ -49,7 +49,7 @@ st.write('-------------------------')
 
 
 # Project Novelty 
-st.subheader('Why would we this project be useful to someone')
+st.subheader('Why this Project is Useful?')
 st.markdown("""
 <div class="justify-text">
 There are various reasons why using a regression model to forecast CO2 emissions is important. Firstly, it is an effective means in the struggle against climate change on a worldwide scale. Researchers and policymakers can decide how to mitigate the environmental impact of CO2 emissions in Rwanda by having a better understanding of the elements that drive these emissions. Secondly, there isn’t quality data that we can get from the subcontinent. Therefore, we can use the predictive model from Rwanda as a generalization to all of Africa. It equips decision-makers to develop efficient policies and allocate resources targeted at lowering emissions and attaining sustainability development goals.
