@@ -49,23 +49,10 @@ st.write('-------------------------')
 
 
 # Project Novelty 
-st.subheader('Novelty of the project')
+st.subheader('Why would we this project be useful to someone')
 st.markdown("""
 <div class="justify-text">
-    Our primary focus is on greenhouse gas emissions, 
-    particularly carbon dioxide (CO2). These emissions
-    result from a variety of human activities, including
-    the use of fossil fuels for energy, transportation
-    , manufacturing, and deforestation. Rising global 
-    temperatures, more frequent and severe extreme weather
-    events, the melting of the polar ice caps, an increase
-    in sea level, and disruptions to ecosystems and 
-    biodiversity are some of the negative repercussions 
-    that follow. To ensure a healthy and habitable planet
-    for both the present and future generations, addressing 
-    the emissions problem is a global necessity that requires
-    cooperative efforts to reduce and ultimately eradicate 
-    these harmful emissions.
+There are various reasons why using a regression model to forecast CO2 emissions is important. Firstly, it is an effective means in the struggle against climate change on a worldwide scale. Researchers and policymakers can decide how to mitigate the environmental impact of CO2 emissions in Rwanda by having a better understanding of the elements that drive these emissions. Secondly, there isn’t quality data that we can get from the subcontinent. Therefore, we can use the predictive model from Rwanda as a generalization to all of Africa. It equips decision-makers to develop efficient policies and allocate resources targeted at lowering emissions and attaining sustainability development goals.
 </div>
 """, unsafe_allow_html=True)
 st.write('-------------------------')
