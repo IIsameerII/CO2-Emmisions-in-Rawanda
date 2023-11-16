@@ -161,8 +161,16 @@ st.info('Distribution of data instances in years')
 # img1 = Image.open('Distribution of data wrt years.png')
 # st.image(img1,use_column_width=True)
 df_mean_emission = pd.read_csv(r'mean_emission.csv',index_col='year')
-st.write(df_mean_emission)
-st.bar_chart(df_mean_emission)#,x=df_mean_emission['data ins'],y=df_mean_emission['emission'])
+
+
+with st.container():
+    col1, col2 = st.columns(2)
+
+    with col1():
+        st.write(df_mean_emission)
+
+    with col2():
+        st.bar_chart(df_mean_emission)#,x=df_mean_emission['data ins'],y=df_mean_emission['emission'])
 
 st.write()
 st.info('Distribution of the Emission Target Value')
