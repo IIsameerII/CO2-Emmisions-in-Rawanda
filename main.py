@@ -10,11 +10,12 @@ import config
 
 
 # project_path = r'C:\Users\SameerAhamed\Documents\GitHub\MACHINE-LEARNING-DSCI6601-PROJECT\\'
-
+st.set_page_config(page_title='main',initial_sidebar_state='expanded')
 train = pd.read_csv(r'./dataset/CO2 Emmisions in Rawanda/train.csv',
                     index_col='ID_LAT_LON_YEAR_WEEK')
 # train = pd.read_csv(r'./dataset/CO2 Emmisions in Rawanda/train.csv',
 #                     index_col='ID_LAT_LON_YEAR_WEEK')
+
 
 
 # Define custom CSS for justification
