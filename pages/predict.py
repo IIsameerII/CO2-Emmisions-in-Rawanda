@@ -17,7 +17,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-test_df = pd.read_csv(config.project_path+r'dataset\CO2 Emmisions in Rawanda\train.csv')
+test_df = pd.read_csv(+r'./dataset/CO2 Emmisions in Rawanda/train.csv')
 
 num_times = st.slider("Choose how many predictions are needed",min_value=0,max_value=5)
 

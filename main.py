@@ -13,6 +13,8 @@ import config
 
 train = pd.read_csv(config.project_path + r'dataset\CO2 Emmisions in Rawanda\train.csv',
                     index_col='ID_LAT_LON_YEAR_WEEK')
+# train = pd.read_csv(r'./dataset/CO2 Emmisions in Rawanda/train.csv',
+#                     index_col='ID_LAT_LON_YEAR_WEEK')
 
 
 # Define custom CSS for justification
