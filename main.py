@@ -157,7 +157,7 @@ df_missingness = pd.read_csv(r'df_missingness.csv',index_col='Key')
 st.bar_chart(df_missingness)
 
 st.write()
-st.info('Distribution of data instances in years')
+st.info('Mean Emissions of data instances in years')
 # img1 = Image.open('Distribution of data wrt years.png')
 # st.image(img1,use_column_width=True)
 df_mean_emission = pd.read_csv(r'mean_emission.csv',index_col='year')
