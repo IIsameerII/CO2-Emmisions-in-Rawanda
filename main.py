@@ -6,11 +6,12 @@ import geopandas as gpd
 from PIL import Image
 import matplotlib
 import numpy as np
+import config
 
 
-project_path = r'C:\Users\SameerAhamed\Documents\GitHub\MACHINE-LEARNING-DSCI6601-PROJECT\\'
+# project_path = r'C:\Users\SameerAhamed\Documents\GitHub\MACHINE-LEARNING-DSCI6601-PROJECT\\'
 
-train = pd.read_csv(project_path + r'dataset\CO2 Emmisions in Rawanda\train.csv',
+train = pd.read_csv(config.project_path + r'dataset\CO2 Emmisions in Rawanda\train.csv',
                     index_col='ID_LAT_LON_YEAR_WEEK')
 
 
@@ -98,7 +99,7 @@ There are 497 unique coordinates from where observations were took
 """, unsafe_allow_html=True)
 
 st.info('The output of the **df.describe()** is shown below')
-df_describe = pd.read_csv(project_path + r'df_describe.csv',index_col='Unnamed: 0')
+df_describe = pd.read_csv(config.project_path + r'df_describe.csv',index_col='Unnamed: 0')
 st.write(df_describe)
 
 st.markdown("""
@@ -158,17 +159,17 @@ Since our project involves geospatial data, leveraging the measurements
 
 st.write('')
 st.info('Visiualization of missingness in the dataset')
-df_missingness = pd.read_csv(project_path + r'df_missingness.csv',index_col='Key')
+df_missingness = pd.read_csv(config.project_path + r'df_missingness.csv',index_col='Key')
 st.bar_chart(df_missingness)
 
 st.write()
 st.info('Distribution of data instances in years')
-img1 = Image.open(project_path+r'Distribution of data wrt years.png')
+img1 = Image.open(config.project_path+r'Distribution of data wrt years.png')
 st.image(img1,use_column_width=True)
 
 st.write()
 st.info('Distribution of the Emission Target Value')
-img2 = Image.open(project_path+r'Target Value Histogram.png')
+img2 = Image.open(config.project_path+r'Target Value Histogram.png')
 st.image(img2,use_column_width=True)
 
 st.info('Visualizations of Emmisions in each unique locations')
@@ -226,10 +227,16 @@ There are 7 features we need to compare with the outcome.
 * Ozone
 
 * Cloud
-            
-We need to deal with missingness in the variables (columns) for exploratory data analysis. 
-            Therefore, we dropped all the variables that have more than 40% of missing values.
 """)
+
+st.markdown("""
+<div class="justify-text">
+We need to deal with missing values in the features columns for exploratory data analysis. 
+Therefore, we dropped all the variables that had more than 40% of missing values.
+</div>
+""", unsafe_allow_html=True)
+
+st.write('')
 
 # Button to show the text
 if st.button('Click here to see features left after dropping'):
@@ -359,13 +366,13 @@ Our objective is to identify a single, representative feature for each
 """, unsafe_allow_html=True)
 
 # Get the Images for all the heatmaps
-carbon_img = Image.open(project_path+r'Carbon Monoxide heatmap.png')
-sulphur_img = Image.open(project_path+r'Sulphur dioxide heatmap.png')
-nitrogen_img = Image.open(project_path+r'Nitrogen Dioxide heatmap.png')
-formaldehyde_img = Image.open(project_path+r'Formaldehyde Heatmap.png')
-uv_img = Image.open(project_path+r'UV Aerosol Heatmap.png')
-ozone_img = Image.open(project_path+r'Ozone Heatmap.png')
-cloud_img = Image.open(project_path+r'Cloud Heatmap.png')
+carbon_img = Image.open(config.project_path+r'Carbon Monoxide heatmap.png')
+sulphur_img = Image.open(config.project_path+r'Sulphur dioxide heatmap.png')
+nitrogen_img = Image.open(config.project_path+r'Nitrogen Dioxide heatmap.png')
+formaldehyde_img = Image.open(config.project_path+r'Formaldehyde Heatmap.png')
+uv_img = Image.open(config.project_path+r'UV Aerosol Heatmap.png')
+ozone_img = Image.open(config.project_path+r'Ozone Heatmap.png')
+cloud_img = Image.open(config.project_path+r'Cloud Heatmap.png')
 
 
 st.image(sulphur_img,caption='Correlation of Sulphur Dioxide Features to emission')
@@ -423,11 +430,11 @@ These are the features we are left with -
 
 st.markdown("""
 <div class="justify-text">
-There are 2 ways which we tried to deal with the missingness of the features.
+There are 2 ways which we tried to deal with the missing values of the features.
             
 1. using KNN imputer
             
-2. checking the distribution and seeing the median and mode
+2. checking the distribution and seeing the mean and median
             
 
 We trained the resulting dataset with this
@@ -439,7 +446,7 @@ We trained the resulting dataset with this
 st.write('---------')
 
 st.markdown('**2.2. Using domain knowledge about emissions and environments**')
-img3 = Image.open(project_path+r'time series foe every location.png')
+img3 = Image.open(config.project_path+r'time series foe every location.png')
 
 st.image(img3,use_column_width=True,caption='Time Series graph of the Emission over 2019 to 2021 in numbered weeks')
 
