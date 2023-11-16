@@ -166,10 +166,10 @@ df_mean_emission = pd.read_csv(r'mean_emission.csv',index_col='year')
 with st.container():
     col1, col2 = st.columns(2)
 
-    with col1():
+    with col1:
         st.write(df_mean_emission)
 
-    with col2():
+    with col2:
         st.bar_chart(df_mean_emission)#,x=df_mean_emission['data ins'],y=df_mean_emission['emission'])
 
 st.write()
