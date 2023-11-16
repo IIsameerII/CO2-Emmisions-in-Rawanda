@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import config
 import pickle
-import numpy as np
+from PIL import Image
 
 st.set_page_config(page_title='Predict using models')
 st.header('Predict using our Trained Models')
@@ -18,6 +18,11 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 test_df = pd.read_csv(r'./dataset/CO2 Emmisions in Rawanda/train.csv')
+
+img0 = Image.open(r'qr-code.png')
+
+# Display the image in the sidebar
+st.sidebar.image(img0, caption='Click here to view our app on your phone')
 
 num_times = st.slider("Choose how many predictions are needed",min_value=0,max_value=5)
 
