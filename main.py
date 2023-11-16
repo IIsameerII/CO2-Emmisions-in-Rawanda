@@ -16,6 +16,10 @@ train = pd.read_csv(r'./dataset/CO2 Emmisions in Rawanda/train.csv',
 # train = pd.read_csv(r'./dataset/CO2 Emmisions in Rawanda/train.csv',
 #                     index_col='ID_LAT_LON_YEAR_WEEK')
 
+img0 = Image.open(r'Streamlit app QR Code.svg')
+
+# Display the image in the sidebar
+st.sidebar.image(img0, caption='Click here to view our app on your phone')
 
 
 # Define custom CSS for justification
