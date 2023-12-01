@@ -17,7 +17,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-test_df = pd.read_csv(r'./dataset/CO2 Emmisions in Rawanda/train.csv')
+test_df = pd.read_csv(r'./dataset/CO2 Emmisions in Rawanda/test.csv')
 
 img0 = Image.open(r'qr-code.png')
 

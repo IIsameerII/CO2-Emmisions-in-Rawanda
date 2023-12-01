@@ -157,9 +157,20 @@ df_missingness = pd.read_csv(r'df_missingness.csv',index_col='Key')
 st.bar_chart(df_missingness)
 
 st.write()
-st.info('Distribution of data instances in years')
-img1 = Image.open('Distribution of data wrt years.png')
-st.image(img1,use_column_width=True)
+st.info('Mean Emissions of data instances in years')
+# img1 = Image.open('Distribution of data wrt years.png')
+# st.image(img1,use_column_width=True)
+df_mean_emission = pd.read_csv(r'mean_emission.csv',index_col='year')
+
+
+with st.container():
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.write(df_mean_emission)
+
+    with col2:
+        st.bar_chart(df_mean_emission)#,x=df_mean_emission['data ins'],y=df_mean_emission['emission'])
 
 st.write()
 st.info('Distribution of the Emission Target Value')
@@ -453,7 +464,7 @@ st.markdown("""
 In the process of refining our dataset for analysis, 
             we selectively chose to retain only the 
             columns pertaining to latitude, longitude, 
-            and week number and year. This decision was significantly 
+            and week number. This decision was significantly 
             influenced by insights gained from a domain expert 
             in environmental science, who is currently pursuing 
             a master's degree. According to their expertise, 
