@@ -22,7 +22,7 @@ test_df = pd.read_csv(r'./dataset/CO2 Emmisions in Rawanda/test.csv')
 img0 = Image.open(r'qr-code.png')
 
 # Display the image in the sidebar
-st.sidebar.image(img0, caption='Click here to view our app on your phone')
+st.sidebar.image(img0, caption='Scan here to view our webapp on your phone')
 
 num_times = st.slider("Choose how many predictions are needed",min_value=0,max_value=5)
 

@@ -19,7 +19,7 @@ train = pd.read_csv(r'./dataset/CO2 Emmisions in Rawanda/train.csv',
 img0 = Image.open(r'qr-code.png')
 
 # Display the image in the sidebar
-st.sidebar.image(img0, caption='Click here to view our app on your phone')
+st.sidebar.image(img0, caption='Scan here to view our webapp on your phone')
 
 
 # Define custom CSS for justification
